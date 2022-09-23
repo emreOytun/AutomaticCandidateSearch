@@ -1,0 +1,46 @@
+from employeeSearching.models import Candidate
+from github import Github
+
+class GithubSearchingService() : 
+    def __init__(self, access_token) :
+        self.candidates = []
+        self.g = Github(access_token)
+
+    def __add_to_candidates(self, user) :
+        newCandidate = Candidate(name = user.name, location = user.location, email = user.email, company = user.company, bio = user.bio, blog = user.blog, userHtmlUrl = user.html_url)
+        self.candidates.append(newCandidate)
+
+    def __save_candidates(self) :
+        for candidate in self.candidates :
+            candidate.save()
+
+    def search(self, query, keyword, max_count) :  
+        self.candidates = []
+        count = 0
+
+        print("Here!")
+
+        for user in self.g.search_users(query):
+            print("Here2!")
+            print(user.name)
+            print(user.blog)
+
+            try:
+                for repo in user.get_repos():
+                    description_str = repo.description if repo.description else ''
+                    repo_string = repo.name + ' ' + description_str
+
+                    if keyword in repo_string :
+                        self.__add_to_candidates(user)
+                        print("BULUNDU")
+                        count += 1
+                        break
+
+            except Exception as e:
+                print("An error occurred while executing the query!")
+                print("Error: " + str(e))
+                return
+
+            if count == max_count:
+                self.__save_candidates()
+                return
