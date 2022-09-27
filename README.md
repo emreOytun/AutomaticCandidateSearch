@@ -8,3 +8,7 @@ then stores this information in a PostgreSQL database, using vanilla HTML and ja
 # Install the project :
 1- Make sure you've installed Django and PyGithub. <br>
 2- Make sure you've entered your own Github token.
+
+# Screenshot :
+
+![alt text](https://github.com/emreOytun/AutomaticCandidateSearch/blob/master/ss.png)
