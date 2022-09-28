@@ -10,5 +10,6 @@ then stores this information in a PostgreSQL database, using vanilla HTML and ja
 2- Make sure you've entered your own Github token.
 
 # Screenshot :
+IMPORTANT NOTE : The results below in the screenshot is the result of the different searches done before, not the result of the search in the example !
 
 ![alt text](https://github.com/emreOytun/AutomaticCandidateSearch/blob/master/ss.png)
